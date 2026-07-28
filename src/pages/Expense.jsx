@@ -103,7 +103,7 @@ function Expense() {
                      border-gray-100 pb-4 last: border-0'>
                                             <div>
                                                 <h4 className='font-medium text-sm'>{item.title}</h4>
-                                                <p className='text-sx text-gray-500 mt-1'>{item.date} . {item.category}</p>
+                                                <p className='text-sx text-gray-500 mt-1'>{item.date} .{item.category}</p>
                                             </div>
 
                                             <div className='text-right'>

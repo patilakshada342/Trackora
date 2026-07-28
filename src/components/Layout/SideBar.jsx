@@ -17,10 +17,10 @@ function SideBar() {
         { icon: <MdDashboard />, path: "/dashboard", name: "Dashboard" },
         { icon: <FaMoneyBillAlt />, path: "/income", name: "Income" },
         { icon: <BsGraphDownArrow />, path: "/expense", name: "Expense" },
-        { icon: <TbCategoryPlus />, path: "/categories", name: "categories" },
+        { icon: <TbCategoryPlus />, path: "/categories", name: "Categories" },
         { icon: <GoGoal />, path: "/budget", name: "Budget" },
         { icon: <TbReport />, path: "/report", name: "Report" },
-        { icon: <FaRobot />, path: "/aidvisor", name: "AI Advisor" },
+        { icon: <FaRobot />, path: "/aiAdvisor", name: "AI Advisor" },
         { icon: <IoMdSettings />, path: "/settings", name: "Settings" }
     ]
     return (

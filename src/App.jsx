@@ -7,6 +7,9 @@ import Settings from './pages/Settings'
 import Register from './pages/Register'
 import Income from './pages/Income'
 import Expense from './pages/Expense'
+import Categories from './pages/Categories'
+import AIAdvisor from './pages/AIAdvisor'
+import AiChat from './pages/AiChat'
 
 function App() {
   return (
@@ -20,7 +23,10 @@ function App() {
         <Route path='/income' element={<Income />} />
         <Route path='/expense' element={<Expense />} />
        <Route path='/settings' element ={<Settings />} />
-      
+      <Route path='/categories' element ={<Categories />} />
+      <Route path='/aiAdvisor' element={<AIAdvisor/>} />
+      <Route path='/aiChat' element={<AiChat/>} />
+
     </Routes>
     </>
   )
