@@ -1,27 +1,28 @@
 import React from 'react'
 import DashboardLayout from '../components/Layout/DashboardLayout'
 
-function Income() {
+
+function Expense() {
     const transactions = [
-        { title: "salary credited", amount: "50,000",  date: "03 May" },
-        { title: "Grosery shopping", amount: "2300",  date: "04 May" },
-        { title: "Petrol", amount: "10,000",  date: "02 May" },
-        { title: "Boots", amount: "900",  date: "02 May" },
+        { title: "Rent", amount: "50,000",  category:"Rent",date: "03 May" },
+        { title: "Grocersy shopping", amount: "2300", category:"shopping", date: "04 May" },
+        { title: "petrol", amount: "10,000", category:"Transport", date: "02 May" },
+        { title: "Shopping", amount: "900",  category:"Shopping",date: "02 May" },
         
     ]
-    return (
-        <>
-            <DashboardLayout title={"Add Income"}>
+  return (
+    <>
+      <DashboardLayout title={"Add Expense"}>
 
                 <div className='grid lg:grid-cols-12 gap-6'>
 
                     <div className='lg:col-span-7'>
                         <div className='bg-white rounded-2xl border border-gray-100 p-6'>
-                            <h3 className='text-lg font-semibold mb-6'>Income Title</h3>
+                            <h3 className='text-lg font-semibold mb-6'>Expense Title</h3>
                             <form action="" className='space-y-5'>
                                 <div>
                                     <label htmlFor="" className='text-sm font-medium mb-2 block'>Income Source</label>
-                                    <input type="text" placeholder="Salary/Freelancing/Business" className='w-full border
+                                    <input type="text" placeholder="Grosery/Rent/shopping" className='w-full border
                                                  border-gray-300 rounded-xl px-4 py-3 outline-none' />
                                 </div>
 
@@ -29,6 +30,16 @@ function Income() {
                                     <label htmlFor="" className='text-sm font-medium mb-2 block'>Amount</label>
                                     <input type="number" placeholder="Enter Amount" className='w-full border
                                                  border-gray-300 rounded-xl px-4 py-3 outline-none' />
+                                </div>
+
+                                <div>
+                                    <label htmlFor="" className='text-sm font-medium mb-2 block'>Expense Category</label>
+                                    <select name="" id="" className='w-full border border-gray-300 rounded-xl px-3 py-4 outline-none'>
+                                        <option value="">Food & Dinning</option>
+                                        <option value="">Shopping</option>
+                                        <option value="">Rent</option>
+                                        <option value="">Subscriptions</option>
+                                    </select>
                                 </div>
 
                                 <div>
@@ -53,36 +64,36 @@ function Income() {
                                         className='w-full border border-gray-300 rounded-xl px-4 py-3 outline-noe '></textarea>
                                 </div>
                                 <button className='w-full h-11 justify-center px-7 py-4  bg-[#a52cf6] rounded-lg text-white text-sm font-medium hover:text-[#a52cf6] hover:border-[#a52cf6] hover:bg-[#f1e6f8]
-                                         transition cursor-pointer flex items-center gap-4'>Save Income</button>
+                                         transition cursor-pointer flex items-center gap-4'>Save Expense</button>
                             </form>
                         </div>
                     </div>
 
                     <div className='lg:col-span-5 space-y-6'>
                         <div className='bg-white rounded-2xl border border-gray-100 p-6'>
-                            <h3 className='text-lg font-semibold mb-6'>Income Summary</h3>
+                            <h3 className='text-lg font-semibold mb-6'>Expense Summary</h3>
 
                             <div className='space-y-4'>
 
                                 <div className='flex justify-between border-b border-gray-100 pb-3'>
-                                    <span className='text-gray-500'>This month Income</span>
-                                    <span className='font-semibold text-green-500'>₹85,000</span>
+                                    <span className='text-gray-500'>This month Expense</span>
+                                    <span className='font-semibold text-red-500'>₹85,000</span>
                                 </div>
 
                                 <div className='flex justify-between border-b border-gray-100 pb-3'>
-                                    <span className='text-gray-500'>Highest Source</span>
-                                    <span className='font-semibold '>Salary</span>
+                                    <span className='text-gray-500'>Top Category</span>
+                                    <span className='font-semibold '>Rent</span>
                                 </div>
 
                                 <div className='flex justify-between border-b border-gray-100 pb-3'>
                                     <span className='text-gray-500'>Entries added</span>
-                                    <span className='font-semibold '>3</span>
+                                    <span className='font-semibold '>13</span>
                                 </div>
                             </div>
                         </div>
                         <div className='bg-white rounded-2xl border border-gray-100 p-6 mt-6 '>
                             <div className='flex items-center justify-between mb-5'>
-                                <h3 className='text-lg font-semibold mb-6'>Recent Income History</h3>
+                                <h3 className='text-lg font-semibold mb-6'>Recent Expense History</h3>
                                 <p className='text-sm text-[#a52cf6] font-medium'>View All</p>
                             </div>
                             <div className='space-y-4'>
@@ -92,11 +103,11 @@ function Income() {
                      border-gray-100 pb-4 last: border-0'>
                                             <div>
                                                 <h4 className='font-medium text-sm'>{item.title}</h4>
-                                                <p className='text-sx text-gray-500 mt-1'>{item.date}</p>
+                                                <p className='text-sx text-gray-500 mt-1'>{item.date} . {item.category}</p>
                                             </div>
 
                                             <div className='text-right'>
-                                                <p className={`font-semibold text-sm text-green-500`}>+ ₹{item.amount}</p>
+                                                <p className={`font-semibold text-sm text-red-500`}>+ ₹{item.amount}</p>
                                             </div>
                                         </div>
                                     ))
@@ -108,9 +119,8 @@ function Income() {
                     </div>
                 </div>
             </DashboardLayout >
-
-        </>
-    )
+    </>
+  )
 }
 
-export default Income
+export default Expense
