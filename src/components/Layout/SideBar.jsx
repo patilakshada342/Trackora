@@ -13,16 +13,22 @@ import { FaMoneyBillAlt } from "react-icons/fa";
 
 function SideBar() {
     const navigate = useNavigate()
+
+     const goToAIChat =() =>{
+        navigate('/aiChat');
+    }
+
     const menus = [
         { icon: <MdDashboard />, path: "/dashboard", name: "Dashboard" },
         { icon: <FaMoneyBillAlt />, path: "/income", name: "Income" },
         { icon: <BsGraphDownArrow />, path: "/expense", name: "Expense" },
         { icon: <TbCategoryPlus />, path: "/categories", name: "Categories" },
-        { icon: <GoGoal />, path: "/budget", name: "Budget" },
-        { icon: <TbReport />, path: "/report", name: "Report" },
+        // { icon: <GoGoal />, path: "/budget", name: "Budget" },
+        // { icon: <TbReport />, path: "/report", name: "Report" },
         { icon: <FaRobot />, path: "/aiAdvisor", name: "AI Advisor" },
         { icon: <IoMdSettings />, path: "/settings", name: "Settings" }
     ]
+
     return (
         <>
             <aside className='w-[250px] bg-white border-r border-gray-100 h-screen fixed top-0 px-5 py-6 hidden lg:block overflow-y-auto'>
@@ -47,7 +53,9 @@ function SideBar() {
                 <div className='mt-12 bg-[#f8f7ff] border boredr-[#ddd8ff] rounded-2xl p-4'>
                     <p className='text-sm font-semibold mb-2'>Your AI Financal Assistant</p>
                     <p className='text-xs text-gray-500 mb-4'>Get smart monthly insights amd improve your saving habits</p>
-                    <button className='w-full bg-[#a52cf6] text-white py-2 rounded-lg text-sm'>Ask AI Advisor</button>
+                    <button className='px-6 py-2.5  bg-[#a52cf6] rounded-lg text-white text-sm 
+                        font-medium hover:text-[#a52cf6] hover:border-[#a52cf6] hover:bg-[#f1e6f8]
+                         transition cursor-pointer' onClick={goToAIChat}>Ask AI Advisor</button>
 
                 </div>
             </aside>

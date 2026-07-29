@@ -2,8 +2,16 @@ import React from 'react'
 import DashboardLayout from '../components/Layout/DashboardLayout'
 import { FaRobot, FaArrowRight } from 'react-icons/fa'
 import { Link } from 'react-router'
+import { useNavigate } from 'react-router'
+
 
 function AIAdvisor() {
+
+    const navigate = useNavigate();
+
+    const goToAIChat =() =>{
+        navigate('/aiChat');
+    }
     const transactions = [
         { title: "Rent", amount: "50,000", category: "Rent", date: "03 May" },
         { title: "Grocersy shopping", amount: "2300", category: "shopping", date: "04 May" },
@@ -39,8 +47,11 @@ flex-col lg:flex-row lg:items-center lg:justify-between gap-6'>
                             <p className='text-gray-500 leading-7 max-x-3xl'>
                                 Personalized financial observations generated after scanning your monthly income, expense , recurring patterns and saving behaviour </p>
                         </div>
-                        <button className='px-7 py-4  bg-[#a52cf6] rounded-lg text-white text-sm font-medium hover:text-[#a52cf6] hover:border-[#a52cf6]
-                         hover:bg-[#f1e6f8] transition cursor-pointer flex items-center gap-4'>Chat with AI Advisor<FaArrowRight /></button>
+                        <button className='px-7 py-4  bg-[#a52cf6] rounded-lg text-white text-sm 
+                        font-medium hover:text-[#a52cf6] hover:border-[#a52cf6] hover:bg-[#f1e6f8]
+                         transition cursor-pointer flex items-center gap-4' onClick={goToAIChat}>
+                            Chat with AI Advisor<FaArrowRight />
+                        </button>
                     </div>
 
                     <div className='bg-[#a52cf60f] rounded-2xl border border-[#a52cf621] p-7 flex
@@ -159,8 +170,8 @@ flex-col lg:flex-row lg:items-center lg:justify-between gap-6 '>
                         </div>
 
                     </div>
-                    <p className='text-gray-500 text-center'>Get more detailed answers with <Link to ='/aiChat' className='text-[#a52cf6] font-medium'>AI Advisory Chat</Link></p>
-                    
+                    <p className='text-gray-500 text-center'>Get more detailed answers with <Link to='/aiChat' className='text-[#a52cf6] font-medium'>AI Advisory Chat</Link></p>
+
                 </div>
 
             </DashboardLayout >
