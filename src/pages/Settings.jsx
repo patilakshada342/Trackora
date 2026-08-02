@@ -1,7 +1,11 @@
 import React from 'react'
 import DashboardLayout from '../components/Layout/DashboardLayout'
+import { MdLightMode, MdDarkMode } from "react-icons/md";
+import { useState } from 'react';
 
 function Settings() {
+
+  const [theme, setTheme] = useState("light");
   return (
     <>
       <DashboardLayout title='Settings'>
@@ -51,20 +55,38 @@ function Settings() {
               </div>
 
               <div>
-                <label className='text-sm font-medium block mb-2'>Theme</label>
-                <select name="" id="" className='w-full border border-gray-300 rounded-xl px-3 py-4 outline-none'>
-                  <option value="">Light Mode</option>
-                  <option value="">Dark Mode</option>
-                </select>
-              </div>
-
-              <div>
                 <label className='text-sm font-medium block mb-2'>Monthly Notification</label>
                 <select name="" id="" className='w-full border border-gray-300 rounded-xl px-3 py-4 outline-none'>
                   <option value="">Enabled</option>
                   <option value="">Disabled</option>
                 </select>
               </div>
+
+              <div>
+                <label className='text-sm font-medium '>Theme</label>
+                <div className="w-50 flex rounded-xl bg-gray-100 p-1">
+                  <button
+                    onClick={() => setTheme("light")}
+                    className={`flex items-center gap-2 rounded-lg  px-4 py-2  transition-all duration-300 
+                    ${theme === 'light' ? "bg-white shadow text-[#a52cf6]" : "text-gray-500"}`}
+                  >
+                    <MdLightMode size={18} />
+                    Light
+                  </button>
+
+                  <button
+                    onClick={() => setTheme("dark")}
+                    className={`flex items-center gap-2 rounded-lg px-4 py-2  transition-all duration-300
+                    ${theme === "dark" ? "bg-white shadow text-[#a52cf6]" : "text-gray-500"
+                      }`}
+                  >
+                    <MdDarkMode size={18} />
+                    Dark
+                  </button>
+                </div>
+              </div>
+
+
             </div>
           </div>
 
@@ -85,13 +107,13 @@ function Settings() {
             </div>
           </div>
 
-<div className='flex  justify-center'>
-  <button  className='px-6 py-2.5  bg-[#a52cf6] rounded-lg text-white text-sm 
+          <div className='flex  justify-center'>
+            <button className='px-6 py-2.5  bg-[#a52cf6] rounded-lg text-white text-sm 
                         font-medium hover:text-[#a52cf6] hover:border-[#a52cf6] hover:bg-[#f1e6f8]
                          transition cursor-pointer '>
-    Save Settings
-  </button>
-</div>
+              Save Settings
+            </button>
+          </div>
         </div>
       </DashboardLayout>
     </>
