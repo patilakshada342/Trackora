@@ -26,7 +26,7 @@ function Categories() {
                                                  border-gray-300 rounded-xl px-4 py-3 outline-none' />
                                 </div>
 
-                                <div>
+                                {/* <div>
                                     <label htmlFor="" className='text-sm font-medium mb-2 block'>Category Type</label>
                                     <select name="" id="" className='w-full border border-gray-300 rounded-xl px-3 py-4 outline-none'>
                                         <option value="">Income</option>
@@ -34,7 +34,7 @@ function Categories() {
                                         <option value="">Budget</option>
 
                                     </select>
-                                </div>
+                                </div> */}
 
                                 <div>
                                     <label htmlFor="" className='text-sm font-medium mb-2 block'>Monthly Limit(Optional)</label>

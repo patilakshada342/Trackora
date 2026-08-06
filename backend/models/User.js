@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 
+// mongoose model :contollers never talk to db directly they use models 
+
 const userSchema = new mongoose.Schema(
     {
         name:{

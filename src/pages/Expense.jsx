@@ -20,11 +20,11 @@ function Expense() {
                         <div className='bg-white rounded-2xl border border-gray-100 p-6'>
                             <h3 className='text-lg font-semibold mb-6'>Expense Title</h3>
                             <form action="" className='space-y-5'>
-                                <div>
-                                    <label htmlFor="" className='text-sm font-medium mb-2 block'>Income Source</label>
+                                {/* <div>
+                                    <label htmlFor="" className='text-sm font-medium mb-2 block'>Expense Source</label>
                                     <input type="text" placeholder="Grosery/Rent/shopping" className='w-full border
                                                  border-gray-300 rounded-xl px-4 py-3 outline-none' />
-                                </div>
+                                </div> */}
 
                                 <div>
                                     <label htmlFor="" className='text-sm font-medium mb-2 block'>Amount</label>
