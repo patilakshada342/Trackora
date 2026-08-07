@@ -37,9 +37,7 @@ const getAllCategories = async (req, res) => {      //get all the categories
         categories
     });
 
-    // return res.status(200).json({
-    //     message :"Get categories API Working"
-    // });
+    
 };
 
 
@@ -48,7 +46,7 @@ const updateCategory = async (req, res) => {
 
     const { id } = req.params;
     const { name, monthlyLimit } = req.body;
-    console.log(monthlyLimit);
+    //console.log(monthlyLimit);
 
 
     if (!name) {                              //check if the name is entered or not 
