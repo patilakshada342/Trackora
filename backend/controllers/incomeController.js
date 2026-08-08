@@ -3,7 +3,7 @@ const Income = require('../models/Income')
 const createIncome = async (req, res) => {
 
     const { source, amount, date, notes } = req.body;
-
+console.log("Logged in user:", req.user);
     if (!source || !amount || !date) {
         return res.status(400).json(
             {
@@ -11,7 +11,7 @@ const createIncome = async (req, res) => {
             });
     }
 
-    const income = await Income.create({ source, amount, date, notes });
+    const income = await Income.create({user:req.user, source, amount, date, notes });
 
     return res.status(201).json({
         message: "Income created successfully"
@@ -20,10 +20,11 @@ const createIncome = async (req, res) => {
 
 const getAllIncomes = async (req, res) => {
 
-    const incomes = await Income.find();
+    const incomes = await Income.find({user:req.user});
     console.log("incomes-->", incomes)
     return res.status(200).json({
-        message: "All incomes retrieved successfully"
+        message: "All incomes retrieved successfully",
+        incomes
     });
 }
 
@@ -32,7 +33,10 @@ const updateIncome =async(req,res)=>{
     const {id} = req.params;
     const {source,amount,date,notes} = req.body;
 
-    const income = await Income.findById(id);
+    const income = await Income.findById({
+    _id: id,
+    user: req.user
+});
 
     if(!source || !amount || !date ){
         return res.status(400).json({message:"Enter all values to be updated"});
@@ -68,7 +72,10 @@ const deleteIncome =async(req,res)=>{
         });
     }
 
-     await Income.findByIdAndDelete(id);
+     await Income.findByIdAndDelete({
+    _id: id,
+    user: req.user
+});
     
     return res.status(200).json({
         message:"Income deleted successfully"

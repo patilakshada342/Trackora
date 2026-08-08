@@ -2,29 +2,34 @@ const mongoose = require('mongoose');
 
 const incomeSchema = new mongoose.Schema(
     {
-        source:{
-            type:String,
-            required:true,
-            trim:true
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+            required: true
         },
-        amount:{
-            type:Number,
-            required:true,
+        source: {
+            type: String,
+            required: true,
+            trim: true
         },
-        date:{
-            type:Date,
-            required:true,
+        amount: {
+            type: Number,
+            required: true,
         },
-        notes:{
-            type:String,
-            default:"",
-        } ,
-        
+        date: {
+            type: Date,
+            required: true,
+        },
+        notes: {
+            type: String,
+            default: "",
+        },
+
     },
     {
-        timestamp:true
+        timestamps: true
     }
 );
 
 
-module.exports =mongoose.model("Income",incomeSchema);
+module.exports = mongoose.model("Income", incomeSchema);

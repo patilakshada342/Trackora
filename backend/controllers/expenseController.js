@@ -9,19 +9,23 @@ const createExpense = async (req,res) => {
              message: "Enter all  details"
         });
     }
+    console.log("CREATE EXPENSE HIT");
+console.log("REQ.USER =", req.user);
 
-    const income = await Expense.create({amount,category,date,paymentMethod,notes});
+    const expense = await Expense.create({user:req.user,amount,category,date,paymentMethod,notes});
+
     return res.status(200).json({ message: "Expense created" })
 }
 
 const getAllExpenses =async (req,res) =>{
 
-    const expenses = await Expense.find()
+    const expenses = await Expense.find({user:req.user})
 
     console.log("ALL Expenses -->",expenses);
 
     return res.status(200).json({
-        message:"All expense fetched sucessfully"
+        message:"All expense fetched sucessfully",
+        expenses
     });
 }
 
@@ -30,7 +34,10 @@ const updateExpense = async(req,res) => {
     const {id} = req.params;
     const {amount, category, date, paymentMethod, notes} =req.body;
 
-    const expense = await Expense.findById(id);
+    const expense = await Expense.findById({
+    _id: id,
+    user: req.user
+});
 
     if(!expense){
         return res.status(404).json({
@@ -47,7 +54,10 @@ const updateExpense = async(req,res) => {
 const deleteExpense = async(req,res)  =>{
 
     const {id}=req.params;
-const deletedExpense = await Expense.findByIdAndDelete(id)
+    const deletedExpense = await Expense.findByIdAndDelete({
+    _id: id,
+    user: req.user
+})
     if(deletedExpense){
 
     return res.status(200).json({
