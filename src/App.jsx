@@ -10,10 +10,12 @@ import Expense from './pages/Expense'
 import Categories from './pages/Categories'
 import AIAdvisor from './pages/AIAdvisor'
 import AiChat from './pages/AiChat'
+import { Toaster } from "sonner"
 
 function App() {
   return (
     <>
+    <Toaster position='top-center'/>
     <Routes>
        <Route path='/' element={<LandingPage />} />
        <Route path='/login' element={<Login/>}/>

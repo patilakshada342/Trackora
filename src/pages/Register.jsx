@@ -1,7 +1,36 @@
-import React from 'react'
-import { Link } from 'react-router'
+import {React ,useState} from 'react'
+import { Link , useNavigate } from 'react-router'
+import { registerUser } from '../services/authApi';
+
+
 
 function Register() {
+
+  const navigate = useNavigate();
+  const[name,setName] =useState("");
+  const[email,setEmail] =useState("");
+  const[password,setPassword] =useState("");
+  const[confirmPassword ,setConfirmPassword] = useState("");
+
+  const handleRegister = async(e) =>{
+    e.preventDefault();
+
+    if(password !== confirmPassword){
+      console.log('Passwords does not match');
+      return;
+    }
+
+    try{
+      const data = await registerUser(name,email,password);
+      console.log("register response->",data)
+      navigate("/login");
+      
+    }
+    catch(error){
+      console.log("register error->",error)
+    }
+  };
+
   return (
     <>
       <div className='min-h-screen bg-[#f6f7fb] flex items-center justify-center px-5 py-10'>
@@ -17,17 +46,38 @@ function Register() {
               <h2 className='text-3xl font-bold md-2'>Create your account</h2>
               <p className='text-gray-500 text-lg leading-8 max-w-xl mb-8'>Start tracking you money with smarter with AI assistance</p>
 
-              <form action="" className='space-y-5'>
-                <label htmlFor="" className='text-sm font-medium mb-2'>Full Name</label>
-                <input type="text" placeholder="Enter your name" className='w-full border border-gray-300 rounded-xl px-3 py-3 outline-none' />
+              <form action="" onSubmit ={handleRegister} className='space-y-5'>
+                <label htmlFor="" className='text-sm font-medium mb-2'
+                >Full Name</label>
+                <input type="text" placeholder="Enter your name" 
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className='w-full border border-gray-300 rounded-xl px-3 py-3 outline-none' />
+                
                 <label htmlFor="" className='text-sm font-medium mb-2'>Email Address</label>
-                <input type="email" placeholder="Enter your email" className='w-full border border-gray-300 rounded-xl px-3 py-3 outline-none' />
+                <input type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)} 
+                placeholder="Enter your email" className='w-full border border-gray-300 rounded-xl px-3 py-3 outline-none' />
+
                 <label htmlFor="">Password</label>
-                <input type="password" placeholder="Enter your password" className='w-full border border-gray-300 rounded-xl px-3 py-3 outline-none' />
+                <input type="password" 
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password" 
+                className='w-full border border-gray-300 rounded-xl px-3 py-3 outline-none' />
+
                 <label htmlFor="">Confirm Password</label>
-                <input type="password" placeholder="Confirm password" className='w-full border border-gray-300 rounded-xl px-3 py-3 outline-none' />
-                                        <button className='w-full h-11 justify-center px-7 py-4  bg-[#a52cf6] rounded-lg text-white text-sm font-medium hover:text-[#a52cf6] hover:border-[#a52cf6] hover:bg-[#f1e6f8]
-                                         transition cursor-pointer flex items-center gap-4'>Create Account</button>
+                <input type="password" 
+                placeholder="Confirm password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                 className='w-full border border-gray-300 rounded-xl px-3 py-3 outline-none' />
+                                        <button className='w-full h-11 justify-center px-7 py-4  bg-[#a52cf6] rounded-lg
+                                         text-white text-sm font-medium hover:text-[#a52cf6] hover:border-[#a52cf6]
+                                          hover:bg-[#f1e6f8]
+                                         transition cursor-pointer flex items-center gap-4' >
+                                          Create Account</button>
                                         <p className='text-sm text-gray=500 mt-6 text-center'>Already have an account? <Link to ='/login' className='text-[#a52cf6] font-medium'>Login</Link></p>
                 
               </form>

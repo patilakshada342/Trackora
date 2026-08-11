@@ -4,10 +4,14 @@ const authRoutes = require('./routes/authRoutes');
 const categoryRoutes = require('./routes/categoryRoutes');
 const incomeRoutes = require('./routes/incomeRoutes');
 const expenseRoutes = require('./routes/expenseRoutes');
+const cors = require("cors");
 
 const connectDB = require("./config/db")
 
 const app= express();       //creates the express
+
+app.use(cors());
+
 app.use(express.json());        // express does not understand json so .json() is used
 
 app.use("/api/auth",authRoutes);

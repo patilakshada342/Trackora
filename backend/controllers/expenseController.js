@@ -9,8 +9,8 @@ const createExpense = async (req,res) => {
              message: "Enter all  details"
         });
     }
-    console.log("CREATE EXPENSE HIT");
-console.log("REQ.USER =", req.user);
+//     console.log("CREATE EXPENSE HIT");
+// console.log("REQ.USER =", req.user);
 
     const expense = await Expense.create({user:req.user,amount,category,date,paymentMethod,notes});
 
