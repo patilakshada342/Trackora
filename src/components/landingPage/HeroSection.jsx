@@ -16,8 +16,7 @@ function HeroSection() {
                         Track Money Smarter , Save Better with AI.
                     </h2>
                     <p className='text-gray-600 text-lg leading-8 mb-8 max-w-xl'>
-                        Tractora helps to manage , tract your expenses and budgets hello hi this is akshada patl
-                        wmxomd2okdp2mniuwenciowneiwmeco FaChartPie FaChartPie FaChartPie FaChartPie FaChartPie FaChartPie FaChartPie FaChartPie FaChartPie
+                        Track your income, expenses, budgets, and financial goals in one place — with AI-powered insights to help you make smarter financial decisions
                     </p>
                     <div className='flex flex-col sm:flex-row gap-4 mb-10'>
                         <Link to = '/register' className='px-7 py-4  bg-[#a52cf6] rounded-lg text-white text-sm font-medium hover:text-[#a52cf6] hover:border-[#a52cf6] hover:bg-[#f1e6f8] transition cursor-pointer flex items-center gap-4'>Create Free Account <FaArrowRight/></Link>
@@ -26,8 +25,8 @@ function HeroSection() {
 
                     <div className='flex fleax-wrap gap-6 text-sm text-gray-500 font-medium'>
                         <span> ✓ Income & Expense Tracker</span>
-                        <span>✓ AI Finance Advisory</span>
-                        <span>✓ Monthly Report</span>
+                        <span>✓ AI-Powered Financial Insights</span>
+                        <span>✓ Smart Monthly Reports</span>
                     </div>
 
                 </div>
@@ -36,22 +35,22 @@ function HeroSection() {
                     <div className='bd-white rounded-2xl border border-gray-100 p-6 shadow-sm hover:transition-transform duration-300 hover:scale-105 '>
                         <FaChartPie className='text-[#a52cf6] text-2xl mb-4' />
                         <h3 className='font-semibold text-lg mb-2'>Expense Analytics</h3>
-                        <p className='text-gray-500 text-sm'>Visual spending category breakdown with charts</p>
+                        <p className='text-gray-500 text-sm'>Understand where your money goes</p>
                     </div>
                     <div className='bd-white rounded-2xl border border-gray-100 p-6 shadow-sm hover:transition-transform duration-300 hover:scale-105 '>
                         <MdSavings className='text-[#a52cf6] text-2xl mb-4' />
-                        <h3 className='font-semibold text-lg mb-2'>Saving Planner</h3>
-                        <p className='text-gray-500 text-sm'>Goal based monthly smart saving decision</p>
+                        <h3 className='font-semibold text-lg mb-2'>Saving Saving Planner</h3>
+                        <p className='text-gray-500 text-sm'>Turn your goals into achievable plans</p>
                     </div>
                     <div className='bd-white rounded-2xl border border-gray-100 p-6 shadow-sm hover:transition-transform duration-300 hover:scale-105 '>
                         <FaRobot className='text-[#a52cf6] text-2xl mb-4' />
-                        <h3 className='font-semibold text-lg mb-2'>AI Insights</h3>
-                        <p className='text-gray-500 text-sm'>AI detecs money leakage and wasted habits</p>
+                        <h3 className='font-semibold text-lg mb-2'>AI Financial Insights</h3>
+                        <p className='text-gray-500 text-sm'> Make smarter decisions with AI</p>
                     </div>
                     <div className='bd-white rounded-2xl border border-gray-100 p-6 shadow-sm hover:transition-transform duration-300 hover:scale-105 '>
                         <TbReportMoneyFilled  className='text-[#a52cf6] text-2xl mb-4' />
                         <h3 className='font-semibold text-lg mb-2'>Montly Reports</h3>
-                        <p className='text-gray-500 text-sm'>Gets the clear montly breakdown</p>
+                        <p className='text-gray-500 text-sm'>See your financial progress at a glance</p>
                     </div>
                 </div>
             </section>

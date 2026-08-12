@@ -4,10 +4,10 @@ import { FaArrowRight, FaRobot } from 'react-icons/fa'
 function AiHighlights() {
 
     const points = [
-        "Ai scans montly expenses and finds usual spending patterns",
-        "Detects subscriptions , impulse shopping and recurring money leaks ",
-        "Builds a practical category wise budget recommendation",
-        " lets users directly chat ask personalised financial questions"
+        "AI analyzes your monthly expenses to identify spending trends and unusual patterns",
+        "Identify recurring expenses, subscriptions, and potential impulse-spending habits",
+        "Receive practical category-wise budget suggestions based on your financial activity",
+        "Ask questions and get personalized guidance about your spending, savings, and financial goals"
     ]
     return (
         <>
@@ -20,8 +20,9 @@ function AiHighlights() {
                             <FaRobot />
                         </div>
                         <div className=' mb-14'>
-                            <h2 className='text-3xl md:text-4xl font-bold mb-4'>Not Just an Expense Tracker - A Real AI Financial Assistant</h2>
-                            <p className='text-gray-500 max-w-2xl mx-auto leading-8'>Tracora Ai continously analyzes your financial behavoiur and gives practical money managemen suggestion instaed of genric charts alone.
+                            <h2 className='text-3xl md:text-4xl font-bold mb-4'>Not Just an Expense Tracker — Your AI Financial Assistant</h2>
+                            <p className='text-gray-500 max-w-2xl mx-auto leading-8'>Trackora goes beyond simply recording transactions. It analyzes your financial activity to uncover spending 
+                                patterns and provide practical insights that can help you manage your money more effectively
                             </p>
                         </div>
 
@@ -39,20 +40,20 @@ function AiHighlights() {
                     </div>
                     <div className='grid grid-cols-2 gap-5'>
                                         <div className='bd-white rounded-2xl border border-gray-100 p-6 shadow-sm hover:transition-transform duration-300 hover:scale-105 '>
-                                            <h3 className='font-semibold text-lg mb-2'>AI spending analysis</h3>
-                                            <p className='text-gray-500 text-sm'>AI identifies categories , expenses and unstable spending patterns </p>
+                                            <h3 className='font-semibold text-lg mb-2'>AI Spending Pnalysis</h3>
+                                            <p className='text-gray-500 text-sm'>Identifies spending patterns and unusual expenses</p>
                                         </div>
                                         <div className='bd-white rounded-2xl border border-gray-100 p-6 shadow-sm hover:transition-transform duration-300 hover:scale-105 '>
-                                            <h3 className='font-semibold text-lg mb-2'>Money waste detections</h3>
-                                            <p className='text-gray-500 text-sm'>Recurring subscription and hidden small leakages are automatically highlighted</p>
+                                            <h3 className='font-semibold text-lg mb-2'>Money Waste Detections</h3>
+                                            <p className='text-gray-500 text-sm'>Highlights subscriptions and small money leaks</p>
                                         </div>
                                         <div className='bd-white rounded-2xl border border-gray-100 p-6 shadow-sm hover:transition-transform duration-300 hover:scale-105 '>
-                                            <h3 className='font-semibold text-lg mb-2'>Budget recommendation</h3>
-                                            <p className='text-gray-500 text-sm'>AI created a saler monthly allocation model based on real usage behaviour </p>
+                                            <h3 className='font-semibold text-lg mb-2'>Smart Budget Recommendations</h3>
+                                            <p className='text-gray-500 text-sm'>uggests personalized monthly category budgets</p>
                                         </div>
                                         <div className='bd-white rounded-2xl border border-gray-100 p-6 shadow-sm hover:transition-transform duration-300 hover:scale-105 '>
-                                            <h3 className='font-semibold text-lg mb-2'>AI chat advisor</h3>
-                                            <p className='text-gray-500 text-sm'>Chat with ai </p>
+                                            <h3 className='font-semibold text-lg mb-2'>AI Chat Advisor</h3>
+                                            <p className='text-gray-500 text-sm'>Get personalized financial guidance through AI</p>
                                         </div>
                                     </div>
                 </div>

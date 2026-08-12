@@ -24,8 +24,8 @@ function Testimonials() {
         <>
             <section id='reviews' className='max-w-7xl mx-auto px-6 lg:px-10 pb-20'>
                 <div className=' text-center mb-14'>
-                    <h2 className='text-3xl md:text-4xl font-bold mb-4'>Loved by users building better financial discipline</h2>
-                    <p className='text-gray-500 max-w-2xl mx-auto leading-8'>A smarter experience than spreadsheet , notebooks or traditional tracters
+                    <h2 className='text-3xl md:text-4xl font-bold mb-4'>Loved by Users Building Better Financial Discipline</h2>
+                    <p className='text-gray-500 max-w-2xl mx-auto leading-8'>A smarter experience than spreadsheets, notebooks, and traditional expense trackers
                     </p>
                 </div>
 

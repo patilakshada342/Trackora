@@ -2,15 +2,9 @@ import { React, useState, useEffect } from 'react'
 import DashboardLayout from '../components/Layout/DashboardLayout'
 import { getAllIncomes, createIncome } from "../services/incomeApi";
 import { toast } from 'sonner';
+import {Link} from "react-router"
 
 function Income() {
-    const transactions = [
-        { title: "salary credited", amount: "50,000", date: "03 May" },
-        { title: "Grosery shopping", amount: "2300", date: "04 May" },
-        { title: "Petrol", amount: "10,000", date: "02 May" },
-        { title: "Boots", amount: "900", date: "02 May" },
-
-    ]
 
     const [source, setSource] = useState('');
     const [amount, setAmount] = useState('');
@@ -166,7 +160,7 @@ function Income() {
                         <div className='bg-white rounded-2xl border border-gray-100 p-6 mt-6 '>
                             <div className='flex items-center justify-between mb-5'>
                                 <h3 className='text-lg font-semibold mb-6'>Recent Income History</h3>
-                                <p className='text-sm text-[#a52cf6] font-medium'>View All</p>
+                                <Link to ='/allIncomes' className='text-sm text-[#a52cf6] font-medium'>View All</Link>
                             </div>
                             <div className='space-y-4'>
                                 {

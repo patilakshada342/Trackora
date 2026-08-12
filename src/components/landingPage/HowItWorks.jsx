@@ -5,33 +5,33 @@ function HowItWorks() {
     const steps = [
         {
             no: "01",
-            title: "create your account",
-            desc: "Register,login and set your monthly financial target to login structured montly tracking"
+            title: "Create Your Account",
+            desc: "Register and log in to Trackora, then set up your financial preferences and monthly goals to get started"
         },
         {
             no: "02",
-            title: "Add income and expense daily",
-            desc: "Record of all transactions in categories like food ,shopping etc"
+            title: "Add Income and Expense Daily",
+            desc: "Record your daily income and expenses and organize transactions into categories such as food, shopping, bills, travel, and more"
         },
         {
             no: "03",
-            title: "Monitor dashboard and reports",
-            desc: "use charts,monthly reports.budget planners and category analysis to understand your habits"
+            title: "Monitor Your Finances",
+            desc: "Use your dashboard, charts, budgets, reports, and category-wise analysis to understand your spending patterns and financial habits"
         },
         {
             no: "04",
-            title: "use AI to improve savings",
-            desc: "get ai based waste deteactions,smart recommendations and ask personlized financial advices anytime"
+            title: "Improve Your Financial Habits with AI",
+            desc: "Get AI-powered spending insights, money-waste alerts, saving suggestions, and personalized financial guidance to make smarter decisions"
         }
     ]
     return (
         <>
-            <section id='howitworks' className='max-w-7xl max-auto px-6 lg:px-10 pb-20'>
+            <section id='howitworks' className='max-w-7xl mx-auto px-6 lg:px-10 pb-20'>
 
                 <div className='text-center mb-14'>
                     <h2 className='text-3xl md:text-4xl font-bold mb-4'>How Trackora Works</h2>
                     <p className='text-gray-500 max-w-2xl mx-auto leading-8'>
-                        A simple but powerfull workflows that transforms random monthly spending into organized financial discipline
+                        A simple yet powerful workflow that turns everyday spending into organized financial management
                     </p>
                 </div>
 
