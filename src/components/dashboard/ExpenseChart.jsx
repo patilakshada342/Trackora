@@ -17,7 +17,8 @@ function ExpenseChart() {
                 <h3 className='font-semibold mb-5'>Expense Overview</h3>
                 <div className='w-full h-[220px] relative'>
                     <ResponsiveContainer width="100%" height="100%">
-                        <PieChart>
+                        
+                        <PieChart width={250} height={250}>
                             <Pie
                                 data={data}
                                 innerRadius={60}
@@ -33,7 +34,7 @@ function ExpenseChart() {
                             </Pie>
                         </PieChart>
                     </ResponsiveContainer>
-                    <div className='absolute inset-0 flex flex-col items-center pointer-events-none'>
+                    <div className='absolute inset-0 flex flex-col items-center justify-center pointer-events-none'>
                         <p className='text-xs text-gray-500'>Total Expense</p>
                         <h4 className='font-bold text-lg'>₹{total.toLocaleString()}</h4>
                     </div>

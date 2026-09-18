@@ -2,10 +2,13 @@ import React from 'react'
 import DashboardLayout from '../components/Layout/DashboardLayout'
 import { MdLightMode, MdDarkMode } from "react-icons/md";
 import { useState } from 'react';
+import {VscEyeClosed,VscEye} from "react-icons/vsc";
 
 function Settings() {
 
   const [theme, setTheme] = useState("light");
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <>
       <DashboardLayout title='Settings'>
@@ -94,12 +97,21 @@ function Settings() {
             <h3 className='text:lg font-semibold mb-6'>Security</h3>
             <div className='grid md:grid-cols-2 gap-5'>
 
-              <div>
+              <div className="relative">
                 <label className='text-sm font-medium block mb-2'>Change Password</label>
-                <input value="*******" type="password" className='w-full border border-gray-100 rounded-2xl px-4 py-3 outline-none' />
+                <input  
+                type={showPassword ? "text":"password"}
+                className='w-full border border-gray-100 rounded-2xl px-4 py-3 pr-12 outline-none' />
+                
 
-              </div>
-
+                <button
+                type="button"
+                onClick={() => setShowPassword(prev => !prev)}
+                className="absolute right-4 top-[42px] ">
+               
+                {showPassword ? (<VscEye size={20}/>) : (<VscEyeClosed size={20} /> )}
+                 </button>
+</div>
               <div>
                 <label className='text-sm font-medium block mb-2'>Confirm Password</label>
                 <input value="5000" type="password" className='w-full border border-gray-100 rounded-2xl px-4 py-3 outline-none' />

@@ -37,14 +37,15 @@ function Register() {
         <div className='max-w-6xl w-full grid lg:grid-cols-2 gap-10 items-center'>
 
           <div className='hidden lg:block'>
-            <h1 className='text-5xl leading-tight mb-6 font-bold'>Build Better Financial Habits Starting Today </h1>
-            <p className='text-gray-500 text-lg leading-8 max-w-xl'>Cretae your free acc to start monitoring income, expense ,budgets , goals and AI- based Financial recommendations</p>
+            <h1 className='text-5xl leading-tight mb-6 font-bold'>Start Building Better Financial Habits Today</h1>
+            <p className='text-gray-500 text-lg leading-8 max-w-xl'>Create your free account to track your income, expenses, budgets, and financial goals — with AI-powered 
+              insights to help you make smarter financial decisions</p>
           </div>
 
           <div className='max-w-md w-full mx-auto'>
             <div className='w-full bg-white border border-gray-100 rounded-2xl p-8 shadow-sm'>
               <h2 className='text-3xl font-bold md-2'>Create your account</h2>
-              <p className='text-gray-500 text-lg leading-8 max-w-xl mb-8'>Start tracking you money with smarter with AI assistance</p>
+              <p className='text-gray-500 text-lg leading-8 max-w-xl mb-8'>Start managing your money smarter with AI-powered assistance</p>
 
               <form action="" onSubmit ={handleRegister} className='space-y-5'>
                 <label htmlFor="" className='text-sm font-medium mb-2'

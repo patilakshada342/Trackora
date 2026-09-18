@@ -11,7 +11,7 @@ import Categories from './pages/Categories'
 import AIAdvisor from './pages/AIAdvisor'
 import AiChat from './pages/AiChat'
 import { Toaster } from "sonner"
-// import AllIncomes from './pages/AllIncomes'
+import ViewAllIncome from './pages/ViewAllIncome'
 
 function App() {
   return (
@@ -29,7 +29,7 @@ function App() {
       <Route path='/categories' element ={<Categories />} />
       <Route path='/aiAdvisor' element={<AIAdvisor/>} />
       <Route path='/aiChat' element={<AiChat/>} />
-      {/* <Route path='/allIncomes' element={<AllIncomes/>} /> */}
+      <Route path='/allIncomes' element={<ViewAllIncome/>} />
 
     </Routes>
     </>

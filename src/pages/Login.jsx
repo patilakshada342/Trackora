@@ -30,7 +30,7 @@ function Login() {
 
           <div className='hidden lg:block'>
             <h1 className='text-5xl leading-tight mb-6 font-bold'>Manage Every Expense with complete confidence</h1>
-            <p className='text-gray-500 text-lg leading-8 max-w-xl'>Access your smart dashboard , track all transactions , view monthly reports and get Ai-powered saving insights in one place</p>
+            <p className='text-gray-500 text-lg leading-8 max-w-xl'>Access your smart dashboard , track all transactions , view monthly reports and get AI-powered saving insights in one place</p>
           </div>
 
           <div className='max-w-md w-full mx-auto'>
