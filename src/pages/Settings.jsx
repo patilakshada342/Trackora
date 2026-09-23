@@ -3,17 +3,27 @@ import DashboardLayout from '../components/Layout/DashboardLayout'
 import { MdLightMode, MdDarkMode } from "react-icons/md";
 import { useState } from 'react';
 import {VscEyeClosed,VscEye} from "react-icons/vsc";
+import { toast } from 'sonner';
+import { TiTick } from "react-icons/ti";
+
 
 function Settings() {
 
   const [theme, setTheme] = useState("light");
   const [showPassword, setShowPassword] = useState(false);
+  const user = JSON.parse(sessionStorage.getItem("user"));
 
   return (
     <>
       <DashboardLayout title='Settings'>
 
-        <div className='space-y-6'>
+        <div 
+        className={`space-y-6 ${
+          theme === "dark"
+          ? "bg-gray-900 text-white"
+          : "bg-white text-gray-900"
+        }`}
+        >
 
           <div className='bg-white rounded-2xl border border-gray-100 p-6'>
             <h3 className='text:lg font-semibold mb-6'>Profile Information</h3>
@@ -21,22 +31,22 @@ function Settings() {
 
               <div>
                 <label className='text-sm font-medium block mb-2'>Full Name</label>
-                <input value="AkshadaPatil" type="text" className='w-full border border-gray-100 rounded-2xl px-4 py-3 outline-none' />
+                <input value={user?.name || ""} readOnly type="text" className='w-full border border-gray-100 rounded-2xl px-4 py-3 outline-none' />
               </div>
 
               <div>
                 <label className='text-sm font-medium block mb-2'>Email Address</label>
-                <input value="akshada@gmail.com" type="email" className='w-full border border-gray-100 rounded-2xl px-4 py-3 outline-none' />
+                <input value={user?.email || ""} readOnly type="email" className='w-full border border-gray-100 rounded-2xl px-4 py-3 outline-none' />
               </div>
 
               <div>
                 <label className='text-sm font-medium block mb-2'>Monthly Income Goal</label>
-                <input value="85000" type="number" className='w-full border border-gray-100 rounded-2xl px-4 py-3 outline-none' />
+                <input value="85000" readOnly type="number" className='w-full border border-gray-100 rounded-2xl px-4 py-3 outline-none' />
               </div>
 
               <div>
                 <label className='text-sm font-medium block mb-2'>Monthly Saving Target</label>
-                <input value="5000" type="number" className='w-full border border-gray-100 rounded-2xl px-4 py-3 outline-none' />
+                <input value="5000" readOnly type="number" className='w-full border border-gray-100 rounded-2xl px-4 py-3 outline-none' />
               </div>
 
 
@@ -114,13 +124,25 @@ function Settings() {
 </div>
               <div>
                 <label className='text-sm font-medium block mb-2'>Confirm Password</label>
-                <input value="5000" type="password" className='w-full border border-gray-100 rounded-2xl px-4 py-3 outline-none' />
+                <input value="5000" readOnly type="password" className='w-full border border-gray-100 rounded-2xl px-4 py-3 outline-none' />
               </div>
             </div>
           </div>
 
           <div className='flex  justify-center'>
-            <button className='px-6 py-2.5  bg-[#a52cf6] rounded-lg text-white text-sm 
+            <button 
+            onClick={() => toast.success("Settings saved successfully!", {
+              style :{
+                background : "white",
+                color:"green",
+                border:"none",
+              },
+              icon: <span style ={{ color:"green"}}>✓</span>,
+            })
+          } 
+          
+
+            className='px-6 py-2.5  bg-[#a52cf6] rounded-lg text-white text-sm 
                         font-medium hover:text-[#a52cf6] hover:border-[#a52cf6] hover:bg-[#f1e6f8]
                          transition cursor-pointer '>
               Save Settings

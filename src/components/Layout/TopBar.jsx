@@ -4,6 +4,9 @@ import { FaBars, FaBell } from 'react-icons/fa'
 
 
 function TopBar({ title, setIsOpen }) {
+
+    const user = JSON.parse(sessionStorage.getItem("user"));
+
     return (
         <>
             <div className='w-full bg-white border border-gray-100 rounded-2xl px-4 sm:px=6 py-4 flex items-center justify-between mb-6'>
@@ -24,7 +27,7 @@ function TopBar({ title, setIsOpen }) {
                         <div className='w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#a52cf6] text-white flex items-center justify-center fot-semibold'>
                             5
                         </div>
-                        <span className='text-sm font-semibold hidden sm:block'>Akshada Patil</span>
+                        <span className='text-sm font-semibold hidden sm:block'>{user?.name || ""}</span>
                     </div>
                 </div>
 

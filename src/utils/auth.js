@@ -1,16 +1,16 @@
-//Backend->JWT token->Frontend->localStorage
-//JWT storage 
-//remenber logged-in user
+    //Backend->JWT token->Frontend->sessionStorage
+    //JWT storage 
+    //remember logged-in user
 
-export const saveToken =(token) =>{
-    localStorage.setItem("token",token);
-};
+    export const saveToken =(token) =>{
+        sessionStorage.setItem("token",token);
+    };
 
-export const getToken =() =>{
-    return localStorage.getItem("token");
+    export const getToken =() =>{
+        return sessionStorage.getItem("token");
 
-};
+    };
 
-export const removeToken =() =>{
-    localStorage.removeItem('token');
-};
+    export const removeToken =() =>{
+        sessionStorage.removeItem('token');
+    };

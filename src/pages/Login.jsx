@@ -15,7 +15,9 @@ function Login() {
     try {
       const data = await loginUser(email, password);
       console.log("Login response-->", data)
+      
       saveToken(data.token);
+      sessionStorage.setItem("user", JSON.stringify(data.user));
       navigate('/dashboard');
       
     } catch (error) {

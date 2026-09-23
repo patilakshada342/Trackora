@@ -1,77 +1,89 @@
 const Expense = require("../models/Expense")
 
-const createExpense = async (req,res) => {
+const createExpense = async (req, res) => {
 
     const { amount, category, date, paymentMethod, notes } = req.body;
 
     if (!amount || !category || !date || !paymentMethod) {
         return res.status(400).json({
-             message: "Enter all  details"
+            message: "Enter all  details"
         });
     }
-//     console.log("CREATE EXPENSE HIT");
-// console.log("REQ.USER =", req.user);
+    //     console.log("CREATE EXPENSE HIT");
+    // console.log("REQ.USER =", req.user);
 
-    const expense = await Expense.create({user:req.user,amount,category,date,paymentMethod,notes});
+    const expense = await Expense.create({ user: req.user, amount, category, date, paymentMethod, notes });
 
     return res.status(200).json({ message: "Expense created" })
 }
 
-const getAllExpenses =async (req,res) =>{
+const getAllExpenses = async (req, res) => {
 
-    const expenses = await Expense.find({user:req.user})
+    const expenses = await Expense.find({ user: req.user })
 
-    console.log("ALL Expenses -->",expenses);
+    console.log("ALL Expenses -->", expenses);
 
     return res.status(200).json({
-        message:"All expense fetched sucessfully",
+        message: "All expense fetched sucessfully",
         expenses
     });
 }
 
-const updateExpense = async(req,res) => {
+const updateExpense = async (req, res) => {
 
-    const {id} = req.params;
-    const {amount, category, date, paymentMethod, notes} =req.body;
+    const { id } = req.params;
+    const { amount, category, date, paymentMethod, notes } = req.body;
 
-    const expense = await Expense.findById({
-    _id: id,
-    user: req.user
-});
+    const updateExpense = await Expense.findOneandUpdate({
+        _id: id,
+        user: req.user
+    },
+        {
+            amount,
+            category,
+            date,
+            paymentMethod,
+            notes
+        },
 
-    if(!expense){
+        { new: true }
+
+    );
+
+    if (!updatedExpense) {
         return res.status(404).json({
-            message:"Expense not found"
+            message: "Expense not found"
         });
     }
 
-   const updatedExpense = await Expense.findByIdAndUpdate(id,{amount,category,date,paymentMethod,notes},{new:true});
-   return res.status(200).json({
-        message:"Expense updated sucessfully"
-    })
-}
-
-const deleteExpense = async(req,res)  =>{
-
-    const {id}=req.params;
-    const deletedExpense = await Expense.findByIdAndDelete({
-    _id: id,
-    user: req.user
-})
-    if(deletedExpense){
-
+    
     return res.status(200).json({
-        message:"Expense deleted sucessfully"
-    })
-}else
-{
-    return res.status(404).json({
-        message:"Expense does not exits"
+        message: "Expense updated sucessfully",
+        expense: updateExpense
+
     });
-}
+};
+
+const deleteExpense = async (req, res) => {
+
+    const { id } = req.params;
+    const deletedExpense = await Expense.findByIdAndDelete({
+        _id: id,
+        user: req.user
+    })
+    if (deletedExpense) {
+
+        return res.status(200).json({
+            message: "Expense deleted sucessfully"
+        })
+    } else {
+        return res.status(404).json({
+            message: "Expense does not exits"
+        });
+    }
 
 
 
 
 }
-module.exports = { createExpense , getAllExpenses, updateExpense, deleteExpense};
+module.exports = { createExpense, getAllExpenses, updateExpense, deleteExpense };
