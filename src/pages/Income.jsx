@@ -3,12 +3,14 @@ import DashboardLayout from '../components/Layout/DashboardLayout'
 import { getAllIncomes, createIncome } from "../services/incomeApi";
 import { toast } from 'sonner';
 import {Link} from "react-router"
+import {getToday} from "../utils/date";
+import { formatDate } from "../utils/date";
 
 function Income() {
 
     const [source, setSource] = useState('');
     const [amount, setAmount] = useState('');
-    const [date, setDate] = useState('');
+    const [date, setDate] = useState(getToday());
     const [notes, setNotes] = useState('');
     const [incomes, setIncomes] = useState([]);
 
@@ -46,7 +48,7 @@ function Income() {
 
             setSource("");
             setAmount("");
-            setDate("");
+            setDate(getToday());
             setNotes("");
 
             //refresh income list 
@@ -169,7 +171,7 @@ function Income() {
                      border-gray-100 pb-4 last: border-0'>
                                             <div>
                                                 <h4 className='font-medium text-sm'>{item.source}</h4>
-                                                <p className='text-sx text-gray-500 mt-1'>{new Date(item.date).toLocaleDateString()}</p>
+                                                <p className='text-sx text-gray-500 mt-1'>{formatDate(item.date)}</p>
                                             </div>
 
                                             <div className='text-right'>

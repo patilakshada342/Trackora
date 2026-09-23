@@ -1,6 +1,6 @@
 import React from 'react'
 import DashboardLayout from '../components/Layout/DashboardLayout'
-
+import {getToday} from "../utils/date";
 
 function Expense() {
     const transactions = [
@@ -10,6 +10,8 @@ function Expense() {
         { title: "Shopping", amount: "900",  category:"Shopping",date: "02 May" },
         
     ]
+
+    const [date,setDate] = useState(getToday());
   return (
     <>
       <DashboardLayout title={"Add Expense"}>
