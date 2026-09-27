@@ -42,14 +42,14 @@ const updateIncome = async (req, res) => {
     const { id } = req.params;
     const { source, amount, date, notes } = req.body;
 
-    const income = await Income.findById({
-        _id: id,
-        user: req.user
-    });
-
     if (!source || !amount || !date) {
         return res.status(400).json({ message: "Enter all values to be updated" });
     }
+
+    const income = await Income.findOne({
+        _id: id,
+        user: req.user
+    });
 
     if (!income) {
         return res.status(400).json({
@@ -57,11 +57,11 @@ const updateIncome = async (req, res) => {
         });
     }
 
-    const updatedIncome = await Income.findByIdAndUpdate(
-        id,
+    await Income.findOneAndUpdate(
+        { _id: id, user: req.user },
         { source, amount, date, notes },
         { new: true }
-    );
+    )
 
     return res.status(200).json({
         message: "Income updated successfully"
