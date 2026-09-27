@@ -13,3 +13,8 @@ export const createIncome = async(incomeData) =>{
     return response.data
 }
 
+export const updateIncome = async(id,incomeData) => {
+    const response = await api.put(`/income/${id}`, incomeData);
+    return response.data;
+};
+

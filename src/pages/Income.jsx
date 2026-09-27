@@ -2,8 +2,8 @@ import { React, useState, useEffect } from 'react'
 import DashboardLayout from '../components/Layout/DashboardLayout'
 import { getAllIncomes, createIncome } from "../services/incomeApi";
 import { toast } from 'sonner';
-import {Link} from "react-router"
-import {getToday} from "../utils/date";
+import { Link } from "react-router"
+import { getToday } from "../utils/date";
 import { formatDate } from "../utils/date";
 import IncomeForm from '../components/Income/IncomeForm';
 
@@ -14,37 +14,37 @@ function Income() {
     const [date, setDate] = useState(getToday());
     const [notes, setNotes] = useState('');
     const [incomes, setIncomes] = useState([]);
-    const recentIncomes = incomes.slice(0,3);
+    const recentIncomes = incomes.slice(0, 3);
 
-    const totalIncome = incomes.reduce((total,income) =>{
+    const totalIncome = incomes.reduce((total, income) => {
         return total + Number(income.amount);
-    },0);
+    }, 0);
 
     const totalEntries = incomes.length;
 
-    const highestIncome =incomes.reduce((highest, income) =>{
-        return Number(income.amount) > Number(highest.amount) ? income :highest ;
-    },incomes[0]);
+    const highestIncome = incomes.reduce((highest, income) => {
+        return Number(income.amount) > Number(highest.amount) ? income : highest;
+    }, incomes[0]);
 
 
-    const handleCreateIncome =async(e) =>{
+    const handleCreateIncome = async (e) => {
         e.preventDefault();
 
-        try{
-            const incomeData ={
+        try {
+            const incomeData = {
                 source,
-                amount:Number(amount),
+                amount: Number(amount),
                 date,
                 notes
             }
 
-            const data=await createIncome(incomeData);
+            const data = await createIncome(incomeData);
 
             toast.success("Income added successfully!!")
 
-            console.log("Income Created data",{
-                style:{
-                    color:"#16a34a",
+            console.log("Income Created data", {
+                style: {
+                    color: "#16a34a",
                 },
             });
 
@@ -56,24 +56,26 @@ function Income() {
             //refresh income list 
             const updatedData = await getAllIncomes();
             setIncomes(updatedData.incomes);
-        }catch(error){
+        } catch (error) {
             //console.log("Create income error:",error);
             toast.error("Income could not be added.")
         }
     };
 
 
+
+    const fetchIncomes = async () => {
+        try {
+            const data = await getAllIncomes();
+            console.log("Income data:", data);
+            setIncomes(data.incomes);
+        }
+        catch (error) {
+            console.log("Income error:", error);
+        }
+    };
+
     useEffect(() => {
-        const fetchIncomes = async () => {
-            try {
-                const data = await getAllIncomes();
-                console.log("Income data:", data);
-                setIncomes(data.incomes);
-            }
-            catch (error) {
-                console.log("Income error:", error);
-            }
-        };
         fetchIncomes();
     }, []);
 
@@ -85,8 +87,8 @@ function Income() {
 
                     <div className='lg:col-span-7'>
                         {/* <div className='bg-white rounded-2xl border border-gray-100 p-6'> */}
-                            <IncomeForm/>
-                            {/* <h3 className='text-lg font-semibold mb-6'>Income Title</h3>
+                        <IncomeForm onSuccess={fetchIncomes} />
+                        {/* <h3 className='text-lg font-semibold mb-6'>Income Title</h3>
                             <form  onSubmit={handleCreateIncome} className='space-y-5'>
                                 <div>
                                     <label htmlFor="source" className='text-sm font-medium mb-2 block'>Income Source</label>
@@ -157,7 +159,7 @@ function Income() {
                         <div className='bg-white rounded-2xl border border-gray-100 p-6 mt-6 '>
                             <div className='flex items-center justify-between mb-5'>
                                 <h3 className='text-lg font-semibold mb-6'>Recent Income History</h3>
-                                <Link to ='/allIncomes' className='text-sm text-[#a52cf6] font-medium mb-5'>View All</Link>
+                                <Link to='/allIncomes' className='text-sm text-[#a52cf6] font-medium mb-5'>View All</Link>
                             </div>
                             <div className='space-y-4'>
                                 {

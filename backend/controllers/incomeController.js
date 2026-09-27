@@ -21,7 +21,8 @@ const createIncome = async (req, res) => {
 const getAllIncomes = async (req, res) => {
     try {
 
-        const incomes = await Income.find({ user: req.user });
+        const incomes = await Income.find({ user: req.user })
+        .sort({ date: -1});
         console.log("incomes-->", incomes)
         return res.status(200).json({
             message: "All incomes retrieved successfully",
