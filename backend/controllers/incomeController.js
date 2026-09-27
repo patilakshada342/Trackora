@@ -73,7 +73,10 @@ const deleteIncome = async (req, res) => {
 
     const { id } = req.params;
 
-    const income = await Income.findById(id);
+    const income = await Income.findOne({
+        _id: id,
+        user: req.user
+    });;
 
 
     if (!income) {
@@ -82,7 +85,7 @@ const deleteIncome = async (req, res) => {
         });
     }
 
-    await Income.findByIdAndDelete({
+    await Income.findOneAndDelete({
         _id: id,
         user: req.user
     });
