@@ -81,7 +81,7 @@ function Income() {
 
     return (
         <>
-            <DashboardLayout title={"Add Income"}>
+            <DashboardLayout title={"Add Income"} noScroll = {true}>
 
                 <div className='grid lg:grid-cols-12 gap-6'>
 

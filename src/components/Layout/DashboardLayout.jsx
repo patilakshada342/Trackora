@@ -4,7 +4,7 @@ import SideBar from './SideBar';
 import MobileMenu from './MobileMenu';
 import TopBar from './TopBar';
 
-function DashboardLayout({title,children}) {
+function DashboardLayout({title, children, noScroll = false}) {
     const [isOpen, setIsOpen] = useState(false);
     return (
         <>
@@ -13,7 +13,9 @@ function DashboardLayout({title,children}) {
                 <SideBar />
                 <MobileMenu isOpen={isOpen} setIsOpen={setIsOpen} />
 
-                <main className='lg:ml-[250px] h-screen overflow-y-auto p-4 sm:p-6 lg:p-8'>
+                <main className={`lg:ml-[250px] h-screen p-4 sm:p-6 lg:p-8 ${ 
+                noScroll ? 'overflow-hidden' : 'overflow-y-auto'
+                }`}>
                     
                     <TopBar title={title} setIsOpen ={setIsOpen}/>
                     {children}
