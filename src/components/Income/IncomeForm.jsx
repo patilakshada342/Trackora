@@ -10,7 +10,6 @@ function IncomeForm({ income, onSuccess }) {
     const [date, setDate] = useState(income?.date ? income.date.split("T")[0] : getToday()
     );
     const [notes, setNotes] = useState(income?.notes || "");
-    const [incomes, setIncomes] = useState([]);
 
 
     const handleCreateIncome = async (e) => {
@@ -36,7 +35,7 @@ function IncomeForm({ income, onSuccess }) {
             else {
                 await createIncome(incomeData);
 
-                const data = await createIncome(incomeData);
+                
 
                 toast.success("Income added successfully!!")
 

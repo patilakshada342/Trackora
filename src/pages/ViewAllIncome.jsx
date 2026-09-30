@@ -64,7 +64,7 @@ function ViewAllIncome() {
 
 
     return (
-        <DashboardLayout title="All Incomes" noScroll={true}>
+        <DashboardLayout title="View and manage all your income entries" noScroll={true}>
 
             <div className="w-full  items-center justify-between mb-6">
                 <div>
