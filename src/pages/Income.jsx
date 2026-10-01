@@ -35,7 +35,7 @@ function Income() {
             setIncomes(data.incomes);
         }
         catch (error) {
-            console.log("Income error:", error);
+    console.log("Income error:", error);
         }
     };
 
