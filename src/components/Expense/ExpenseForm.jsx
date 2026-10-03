@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createExpense, updateExpense } from "../../services/expenseApi";
 import { toast } from "sonner";
 import { getToday } from "../../utils/date";
+import { getAllCategories } from '../../services/categoryApi';
 
 function ExpenseForm({ expense, onSuccess }) {
 
@@ -11,7 +12,21 @@ function ExpenseForm({ expense, onSuccess }) {
     );
     const [paymentMethod, setPaymentMethod] = useState(expense?.paymentMethod || "");
     const [notes, setNotes] = useState(expense?.notes || "");
+    const [categories, setCategories] = useState([]);
 
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const data = await getAllCategories();
+                console.log("categories api res:", data)
+                setCategories(data.categories || []);
+            }
+            catch (error) {
+                console.log("Category Error:", error);
+            }
+        };
+        fetchCategories();
+    }, []);
 
     const handleCreateExpense = async (e) => {
         e.preventDefault();
@@ -88,15 +103,17 @@ function ExpenseForm({ expense, onSuccess }) {
                         <select
                             value={category}
                             onChange={(e) => setCategory(e.target.value)}
-                            
+
                             className='w-full border
-                                                 border-gray-300 rounded-xl px-4 py-3 outline-none'
+                                                 border-gray-300 rounded-xl px-4 py-3 outline-none' 
+                                                 required
                         >
                             <option value="" disabled>Select Category</option>
-                            <option value="Food & Dining">Food & Dining</option>
-                            <option value="Shopping">Shopping</option>
-                            <option value="Rent">Rent</option>
-                            <option value="Subscriptions">Subscriptions</option>
+                            {categories.map((item) => (
+                                <option key={item._id} value={item._id}>
+                                    {item.name} </option>
+
+                            ))}
 
                         </select>
                     </div>
@@ -140,7 +157,8 @@ function ExpenseForm({ expense, onSuccess }) {
                     </div>
                     <button type="submit" className='w-full h-11 justify-center px-7 py-4  bg-[#a52cf6] rounded-lg text-white 
                     text-sm font-medium hover:text-[#a52cf6] hover:border-[#a52cf6] hover:bg-[#f1e6f8]
-                                         transition cursor-pointer flex items-center gap-4'>{expense ? "Update Expense" : "Add Expense"}</button>
+                                         transition cursor-pointer flex items-center gap-4'>
+                        {expense ? "Update Expense" : "Add Expense"}</button>
                 </form>
             </div>
         </>

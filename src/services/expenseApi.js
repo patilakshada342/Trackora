@@ -10,7 +10,7 @@ export const updateExpense = async (id,expenseData) => {
     return response.data;
 };
 
-export const deleteExpense = async (id,expenseData) => {
+export const deleteExpense = async (id) => {
     const response = await api.delete(`/expense/${id}`,expenseData);
     return response.data;
 };
