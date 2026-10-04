@@ -9,10 +9,6 @@ import IncomeForm from '../components/Income/IncomeForm';
 
 function Income() {
 
-    const [source, setSource] = useState('');
-    const [amount, setAmount] = useState('');
-    const [date, setDate] = useState(getToday());
-    const [notes, setNotes] = useState('');
     const [incomes, setIncomes] = useState([]);
     const recentIncomes = incomes.slice(0, 3);
 

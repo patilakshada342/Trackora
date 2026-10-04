@@ -19,7 +19,9 @@ const createExpense = async (req, res) => {
 
 const getAllExpenses = async (req, res) => {
 
-    const expenses = await Expense.find({ user: req.user })
+    const expenses = await Expense.find({
+    user: req.user
+}).populate("category", "name");
 
     console.log("ALL Expenses -->", expenses);
 
