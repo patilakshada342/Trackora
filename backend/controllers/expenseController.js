@@ -20,8 +20,8 @@ const createExpense = async (req, res) => {
 const getAllExpenses = async (req, res) => {
 
     const expenses = await Expense.find({
-    user: req.user
-}).populate("category", "name");
+        user: req.user
+    }).populate("category", "name").sort({ date: -1});
 
     console.log("ALL Expenses -->", expenses);
 
@@ -36,7 +36,7 @@ const updateExpense = async (req, res) => {
     const { id } = req.params;
     const { amount, category, date, paymentMethod, notes } = req.body;
 
-    const updateExpense = await Expense.findOneandUpdate({
+    const updateExpense = await Expense.findOneAndUpdate({
         _id: id,
         user: req.user
     },
@@ -52,13 +52,13 @@ const updateExpense = async (req, res) => {
 
     );
 
-    if (!updatedExpense) {
+    if (!updateExpense) {
         return res.status(404).json({
             message: "Expense not found"
         });
     }
 
-    
+
     return res.status(200).json({
         message: "Expense updated sucessfully",
         expense: updateExpense

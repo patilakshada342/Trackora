@@ -12,6 +12,7 @@ import AIAdvisor from './pages/AIAdvisor'
 import AiChat from './pages/AiChat'
 import { Toaster } from "sonner"
 import ViewAllIncome from './pages/ViewAllIncome'
+import ViewAllExpense from './pages/ViewAllExpense'
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
       <Route path='/aiAdvisor' element={<AIAdvisor/>} />
       <Route path='/aiChat' element={<AiChat/>} />
       <Route path='/allIncomes' element={<ViewAllIncome/>} />
+      <Route path='/allExpenses' element={<ViewAllExpense/>} />
 
     </Routes>
     </>

@@ -32,7 +32,9 @@ const expenseSchema = new mongoose.Schema(
                 "Cash",
                 "UPI",
                 "Debit Card",
-                "Net Banking"
+                "Net Banking",
+                "Bank Transfer",
+                "Cheque"
             ]
         },
 

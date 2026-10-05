@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, useNavigate } from 'react-router'
+import { NavLink, useNavigate ,useLocation} from 'react-router'
 import { MdDashboard } from "react-icons/md";
 import { FcMoneyTransfer } from "react-icons/fc";
 import { BsGraphDownArrow } from "react-icons/bs";
@@ -13,6 +13,7 @@ import { FaMoneyBillAlt } from "react-icons/fa";
 
 function SideBar() {
     const navigate = useNavigate()
+    const location = useLocation()
 
      const goToAIChat =() =>{
         navigate('/aiChat');
@@ -39,14 +40,27 @@ function SideBar() {
                     {
                         menus.map((data, i) => (
                             <NavLink
-                                key={i}
-                                to={data.path}
-                                className={({ isActive }) => `
-    flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all ${isActive ? 'bg-[#a52cf6] text-white' : 'text-gray-600 hover:bg-gray-100'}
-    `}>
-                                {data.icon} {data.name}
-                            </NavLink>
-                        ))
+    key={i}
+    to={data.path}
+    className={() => {
+        const active =
+            location.pathname === data.path ||
+            (data.name === "Income" &&
+                location.pathname === "/allIncomes") ||
+            (data.name === "Expense" &&
+                location.pathname === "/allExpenses");
+
+        return `
+            flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all
+            ${active
+                ? 'bg-[#a52cf6] text-white'
+                : 'text-gray-600 hover:bg-gray-100'}
+        `;
+    }}
+>
+    {data.icon} {data.name}
+</NavLink>                
+ ))
                     }
 
                 </div>

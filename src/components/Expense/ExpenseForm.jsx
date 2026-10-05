@@ -6,7 +6,7 @@ import { getAllCategories } from '../../services/categoryApi';
 
 function ExpenseForm({ expense, onSuccess }) {
 
-    const [category, setCategory] = useState(expense?.category || "");
+    const [category, setCategory] = useState(expense?.category?._id || expense?.category || "");
     const [amount, setAmount] = useState(expense?.amount || "");
     const [date, setDate] = useState(expense?.date ? expense.date.split("T")[0] : getToday()
     );
@@ -145,6 +145,8 @@ function ExpenseForm({ expense, onSuccess }) {
                             <option value="Bank Transfer">Bank Transfer</option>
                             <option value="UPI">UPI</option>
                             <option value="Cheque">Cheque</option>
+                            <option value="Debit Card">Debit Card</option>
+                            <option value="Net Banking">Net Banking</option>
                         </select>
                     </div>
 

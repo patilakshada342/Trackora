@@ -82,7 +82,7 @@ useEffect(() =>{
                      border-gray-100 pb-4 last: border-0'>
                                             <div>
                                                 <h4 className='font-medium text-sm'>{item.category?.name || "Expense"}</h4>
-                                                <p className='text-xs text-gray-500 mt-1'>{new Date(item.date).toLocaleDateString()} · {item.paymentMethod}</p>
+                                                <p className='text-xs text-gray-500 mt-1'>{formatDate(item.date)} · {item.paymentMethod}</p>
                                             </div>
 
                                             <div className='text-right'>
