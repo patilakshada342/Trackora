@@ -3,24 +3,56 @@ import { FaArrowUp } from 'react-icons/fa';
 import { FaWallet } from "react-icons/fa";
 import { FaArrowDown } from 'react-icons/fa6';
 import { PiPiggyBankBold } from "react-icons/pi";
+import {useState,useEffect} from 'react';
+import  {getAllIncomes} from '../../services/incomeApi';
+import { getAllExpenses } from '../../services/expenseApi';
 
 function SummaryCard() {
 
+    const[totalIncome,setTotalIncome]=useState(0);
+    const[totalExpense,setTotalExpense]=useState(0);
+
+    useEffect (() =>{
+        const fetchSummary = async() =>{
+            try{
+                const incomeData = await getAllIncomes();
+                const expenseData = await getAllExpenses();
+
+                const incomes = incomeData.incomes || []; 
+                const expenses = expenseData.expenses || [];
+
+                const incomeTotal = incomes.reduce((sum,income) => sum + Number(income.amount),0);
+                const expenseTotal = expenses.reduce((sum, expense) => sum + Number(expense.amount),0 );
+
+                setTotalIncome(incomeTotal);
+            setTotalExpense(expenseTotal);
+
+            }
+            catch(error){
+                console.log("Dashboard summary error:",error)
+            }
+        };
+
+        fetchSummary();
+    },[]);
+
+const balance = totalIncome - totalExpense;
+
     const cards = [
         {
-            title: "Total Balance", amount: "345", change: "+8.2% this month",
+            title: "Total Balance", amount:balance, change: "+8.2% this month",
             icon: <FaWallet />, bg: "bg-[#f4f1ff]", text: "text-[#5b3df5]"
         },
         {
-            title: "Total Income", amount: "200000", change: "+12.98% this month",
+            title: "Total Income", amount:totalIncome, change: "+12.98% this month",
             icon: <FaArrowUp />, bg: "bg-[#dceee3]", text: "text-[#00a63d]"
         },
         {
-            title: "Total Expense", amount: "457263", change: "+5.7% this month",
+            title: "Total Expense", amount: totalExpense, change: "+5.7% this month",
             icon: <FaArrowDown />, bg: "bg-[#f4d2dc]", text: "text-[#e70a0a]"
         },
         {
-            title: "Total Savings", amount: "98347", change: "34% saved",
+            title: "Total Savings", amount:balance, change: "34% saved",
             icon: <PiPiggyBankBold />, bg: "bg-[#f4f1ff]", text: "text-[#5b3df5]"
         },
 

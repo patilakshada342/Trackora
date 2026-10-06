@@ -1,15 +1,60 @@
 import React from 'react'
+import {useState,useEffect} from 'react';
+import  {getAllIncomes} from '../../services/incomeApi';
+import { getAllExpenses } from '../../services/expenseApi';
+import { formatDate } from '../../utils/date';
+
 
 function RecentTransactions() {
-    const transactions = [
-        { title: "salary credited", category: "Income", amount: "50,000", type: "credit", date: "03 May" },
-        { title: "Grosery shopping", category: "Food", amount: "2300", type: "credit", date: "04 May" },
-        { title: "Petrol", category: "Transport", amount: "10,000", type: "expense", date: "02 May" },
-        { title: "Boots", category: "Shopping", amount: "900", type: "expense", date: "02 May" },
-        { title: "Netfilx Subscription", category: "Entertaiment", amount: "399", type: "expense", date: "03 May" },
-        { title: "Finance", category: "Kharcha pani", amount: "900", type: "expense", date: "06 May" },
 
-    ]
+const [transactions,setTransactions]=useState([]);
+
+useEffect(() => {
+    const fetchTransactions = async () => {
+        try {
+            const incomeData = await getAllIncomes();
+            const expenseData = await getAllExpenses();
+
+            const incomes = incomeData.incomes || [];
+            const expenses = expenseData.expenses || [];
+
+            const incomeTransactions = incomes.map((income) => ({
+                title: income.source,
+                category: "Income",
+                amount: income.amount,
+                type: "credit",
+                date: income.date
+            }));
+
+            const expenseTransactions = expenses.map((expense) => ({
+                title: expense.category?.name,
+                category: "Expense",
+                amount: expense.amount,
+                type: "expense",
+                date: expense.date
+            }));
+
+            const allTransactions = [
+                ...incomeTransactions,
+                ...expenseTransactions
+            ];
+
+            allTransactions.sort(
+                (a, b) => new Date(b.date) - new Date(a.date)
+            );
+
+            setTransactions(allTransactions.slice(0, 6));
+
+        } catch (error) {
+            console.log("Recent transactions error:", error);
+        }
+    };
+
+    fetchTransactions();
+}, []);
+
+
+
     return (
         <>
             <div className='bg-white rounded-2xl border border-gray-100 p-5 h-full'>
@@ -30,7 +75,7 @@ function RecentTransactions() {
                                 <div className='text-right'>
                                     <p className={`font-semibold text-sm ${item.type == 'credit' ? 
                                     'text-green-600' : 'text-red-500'}`}>{item.type == 'credit' ? '+' : '-'} ₹{item.amount}</p>
-                                    <p className='text-sx text-gray-500 mt-1'>{item.date}</p>
+                                    <p className='text-sx text-gray-500 mt-1'>{formatDate(item.date)}</p>
                                 </div>
                             </div>
                         ))
