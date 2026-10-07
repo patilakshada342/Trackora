@@ -5,6 +5,7 @@ const categoryRoutes = require('./routes/categoryRoutes');
 const incomeRoutes = require('./routes/incomeRoutes');
 const expenseRoutes = require('./routes/expenseRoutes');
 const cors = require("cors");
+const aiRoutes = require('./routes/aiRoutes');
 
 const connectDB = require("./config/db")
 
@@ -18,6 +19,7 @@ app.use("/api/auth",authRoutes);
 app.use("/api/categories",categoryRoutes);
 app.use("/api/income",incomeRoutes);
 app.use("/api/expense",expenseRoutes);
+app.use("/api/ai",aiRoutes);
 
 const PORT = process.env.PORT || 5000;
 
