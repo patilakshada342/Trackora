@@ -23,7 +23,7 @@ const getAllExpenses = async (req, res) => {
         user: req.user
     }).populate("category", "name").sort({ date: -1});
 
-    console.log("ALL Expenses -->", expenses);
+    //console.log("ALL Expenses -->", expenses);
 
     return res.status(200).json({
         message: "All expense fetched sucessfully",
