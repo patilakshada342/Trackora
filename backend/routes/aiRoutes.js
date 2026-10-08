@@ -76,6 +76,40 @@ router.post("/advice", authMiddleware, async (req, res) => {
             categoryTotals[categoryName] += expense.amount;
         });
 
+        //prompt 
+
+        const prompt = `
+        You are a personal financial advisor for an application called Trackora.
+
+        Analyze the user's financial information below:
+
+        Total Income : ₹${totalIncome}
+        Total Expense : ₹${totalExpense}
+        Remaining Balance : ₹${balance}
+
+        Category-wise Expenses:${JSON.stringify(categoryTotals, null, 2)}
+
+        Give the user:
+        1. A short analysis of their financial situation.
+        2. Their biggest spending category.
+        3. Two practical ways to reduce unnecessary spendings.
+        4 . One suggestion for saving money.
+
+        Keep the advice simple,practical , and easy to understand.
+        `;
+
+        console.log("PROMPT:", prompt);
+
+
+        //call gemini
+        const response = await ai.models.generateContent({
+            model: "gemini-3.5-flash",
+            contents: prompt,
+        });
+
+        //get answer from gemini
+        const aiAdvice = response.text;
+
 
         // console.log("Incomes fetched:", incomes);
         // console.log("Expenses fetched:", expenses);
@@ -86,6 +120,7 @@ router.post("/advice", authMiddleware, async (req, res) => {
             totalExpense,
             balance,
             categoryTotals,
+            aiAdvice,
             message: "Incomes & Expenses fetched successfully!"
         });
 
