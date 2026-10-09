@@ -72,7 +72,9 @@ setData(chartData);
     return (
         <>
             <div className='bg-white rounded-2xl border border-gray-100 p-5 h-full'>
-                <h3 className='font-semibold mb-5'>Expense Overview</h3>
+                <h3 className='font-semibold mb-5'>
+                    {new Date().toLocaleString("en-us",{month:"long"})}'s Expense Overview
+                </h3>
                 <div className='w-full h-[220px] relative'>
                     <ResponsiveContainer width="100%" height="100%">
 
