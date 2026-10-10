@@ -51,12 +51,32 @@ router.post("/advice", authMiddleware, async (req, res) => {
             user: req.user
         }).populate("category", "name");
 
+        const now = new Date();
+
+        const currentMonthIncomes = incomes.filter((income) => {
+            const date = new Date(income.date);
+
+            return (
+                date.getMonth() === now.getMonth() &&
+                date.getFullYear() === now.getFullYear()
+            );
+        });
+
+        const currentMonthExpenses = expenses.filter((expense) => {
+            const date = new Date(expense.date);
+
+            return (
+                date.getMonth() === now.getMonth() &&
+                date.getFullYear() === now.getFullYear()
+            );
+        });
+
         //calculating the totals
-        const totalIncome = incomes.reduce(
+        const totalIncome = currentMonthIncomes.reduce(
             (total, income) => total + income.amount, 0
         );
 
-        const totalExpense = expenses.reduce(
+        const totalExpense = currentMonthExpenses.reduce(
             (total, expense) => total + expense.amount, 0
         );
 
@@ -66,7 +86,7 @@ router.post("/advice", authMiddleware, async (req, res) => {
         const categoryTotals = {};   //created an abj
 
 
-        expenses.forEach((expense) => {         //checking category for each expense
+        currentMonthExpenses.forEach((expense) => {         //checking category for each expense
             const categoryName = expense.category?.name || "Other";
 
             if (!categoryTotals[categoryName]) {
@@ -82,34 +102,50 @@ router.post("/advice", authMiddleware, async (req, res) => {
         const prompt = `
         You are a personal financial advisor for an application called Trackora.
 
-        Analyze ONLY the  financial data provided below:
+        Analyze ONLY the  following verified financial data for the current month.
 
         Final summary:
         -Total Income : ₹${totalIncome}
         -Total Expense : ₹${totalExpense}
         -Remaining Balance : ₹${balance}
 
-        Category-wise Expenses:${JSON.stringify(categoryTotals, null, 2)}
+        Category-wise Expenses:
+        ${JSON.stringify(categoryTotals, null, 2)}
 
-        Your Task:
-        1.Give a short analysis of the user's financial situation
-        2. Identify the user's biggest spending category
-        3. Give two practical suggestions to manage spending
-        4. Give one simple saving suggestion
+        Generate a JSON object with exactly these five properties:
 
-        Important Rules:
-            - Do not assume expenses that are not provided.
-            - Do not invent financial information
-            - Do not assume the expenses are from a specific month unless explicitly provided.
-            - Do not claim that the user can save a specific amount unless it can be calculated from the provided data.
-            - Clearly distinguish between observations and suggestions.
-            - Keep the advice practical and easy to understand.
-            - Do not provide investment recommendations or specific financial products.
-            - Do not assume the remaining balance is available for savings.
-            - Do not tell the user to save or transfer the entire remaining balance.
-            - When suggesting savings, recommend setting a reasonable savings goal rather than assuming a specific amount is available.
+{
+  "executiveSummary": "A short summary of the user's financial situation.",
+  "spendingPatterns": [
+    "Observation based on actual spending data."
+  ],
+  "savingOpportunities": [
+    "Practical suggestion to manage spending."
+  ],
+  "moneyWaste": [
+    "Potential unnecessary spending, only if supported by data."
+  ],
+  "recommendedBudget": [
+    {
+      "name": "Existing expense category name",
+      "amount": 0
+    }
+  ]
+}
 
-
+        - Return valid JSON only. Do not use Markdown code fences.
+- executiveSummary must be short and personalized.
+- Provide 2 to 4 spendingPatterns based only on the data.
+- Provide 2 to 4 practical savingOpportunities.
+- For moneyWaste, never label spending as waste without evidence.
+  If no waste can be established, explain that in one short item.
+- Recommend a next-month budget only for categories supported by the data.
+- Each recommendedBudget amount must be a non-negative number in INR.
+- Base recommended budgets on observed spending and available income.
+- Do not assume the entire remaining balance is available for savings.
+- Do not invent subscriptions, percentages, trends, or amounts.
+- If data is insufficient, state the limitation instead of guessing.
+- Do not provide investment advice or recommend financial products.
         Keep the advice simple,practical , and easy to understand.
         `;
 
@@ -120,11 +156,13 @@ router.post("/advice", authMiddleware, async (req, res) => {
         const response = await ai.models.generateContent({
             model: "gemini-3.5-flash",
             contents: prompt,
+            config:{
+                responseMineType:"application/json",
+            },
         });
 
         //get answer from gemini
-        const aiAdvice = response.text;
-
+        const aiAdvice = JSON.parse(response.text);
 
         // console.log("Incomes fetched:", incomes);
         // console.log("Expenses fetched:", expenses);
@@ -136,7 +174,7 @@ router.post("/advice", authMiddleware, async (req, res) => {
             balance,
             categoryTotals,
             aiAdvice,
-            message: "Incomes & Expenses fetched successfully!"
+            message: "Ai financial advice generated successfully!"
         });
 
     }
@@ -151,7 +189,7 @@ router.post("/advice", authMiddleware, async (req, res) => {
 
 
 
- // AI insight route
+// AI insight route
 router.post("/insights", authMiddleware, async (req, res) => {
     try {
         // Fetch logged-in user's income and expenses

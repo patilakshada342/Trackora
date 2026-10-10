@@ -6,3 +6,8 @@ export const aiInsights = async () =>{
      console.log("Base URL:", api.defaults.baseURL);
     return response.data;
 }
+
+export const getAIAdvice = async() =>{
+    const response = await api.post('/ai/advice');
+    return response.data;
+};
