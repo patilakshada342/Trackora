@@ -15,27 +15,27 @@ const ai = new GoogleGenAI({                //genimi client creation
 
 
 //test route
-router.get("/test", async (req, res) => {
-    try {
-        const response = await ai.models.generateContent({
-            model: "gemini-3.5-flash",
-            contents: "i have salary 15k , how much i sav",
-        });
+// router.get("/test", async (req, res) => {
+//     try {
+//         const response = await ai.models.generateContent({
+//             model: "gemini-3.5-flash",
+//             contents: "i have salary 15k , how much i sav",
+//         });
 
-        res.status(200).json({
-            success: true,
-            message: response.text,
-        });
+//         res.status(200).json({
+//             success: true,
+//             message: response.text,
+//         });
 
-    } catch (error) {
-        console.error("Gemini Error:", error);
+//     } catch (error) {
+//         console.error("Gemini Error:", error);
 
-        res.status(500).json({
-            success: false,
-            message: "AI request failed",
-        });
-    }
-});
+//         res.status(500).json({
+//             success: false,
+//             message: "AI request failed",
+//         });
+//     }
+// });
 
 
 //Ai advice route 
@@ -156,8 +156,8 @@ router.post("/advice", authMiddleware, async (req, res) => {
         const response = await ai.models.generateContent({
             model: "gemini-3.5-flash",
             contents: prompt,
-            config:{
-                responseMineType:"application/json",
+            config: {
+                responseMineType: "application/json",
             },
         });
 
@@ -407,6 +407,47 @@ Return exactly this JSON structure:
         res.status(500).json({
             success: false,
             message: "Failed to generate AI insights"
+        });
+    }
+});
+
+
+router.post("/chat", authMiddleware, async (req, res) => {
+    try {
+        const { message } = req.body;
+
+        if (!message || !message.trim()) {
+            return res.status(400).jsoc({
+                success: false,
+                message: "Message is required"
+            });
+        }
+
+        const response = await ai.models.generateContent({
+            model: "gemini-3.6-flash",
+            contents: `You are Trackora's AI Financial Assistant.
+                Help users understand budgeting, saving, expenses,
+                and general personal finance.
+
+                Do not invent the user's financial data.
+                Do not claim to know their income or expenses unless
+                that information is provided.
+                Give practical, easy-to-understand answers.
+
+                User message: ${message}`
+        });
+
+        res.status(200).json({
+            success:true,
+            reply:response.text
+        });
+    }
+    catch (error) {
+        console.log("AI chat API error:", error);
+
+        res.status(500).json({
+            success: false,
+            message: "failed to generate AI response"
         });
     }
 });

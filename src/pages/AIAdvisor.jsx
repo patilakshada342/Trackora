@@ -36,23 +36,6 @@ function AIAdvisor() {
     }, []);
 
 
-
-    const transactions = [
-        { title: "Rent", amount: "50,000", category: "Rent", date: "03 May" },
-        { title: "Grocersy shopping", amount: "2300", category: "shopping", date: "04 May" },
-        { title: "petrol", amount: "10,000", category: "Transport", date: "02 May" },
-        { title: "Shopping", amount: "900", category: "Shopping", date: "02 May" },
-
-    ]
-
-    const category = [
-        { name: "Housing", amount: "20,000" },
-        { name: "Food & Dinning", amount: "10,000" },
-        { name: "Transport", amount: "20,000" },
-        { name: "Entertainment", amount: "2,000" },
-        { name: "Shopping", amount: "5,000" },
-    ]
-
     return (
         <>
             <DashboardLayout title={"AI Financial Advisor"}>
