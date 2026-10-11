@@ -146,7 +146,16 @@ router.post("/advice", authMiddleware, async (req, res) => {
 - Do not invent subscriptions, percentages, trends, or amounts.
 - If data is insufficient, state the limitation instead of guessing.
 - Do not provide investment advice or recommend financial products.
-        Keep the advice simple,practical , and easy to understand.
+-Keep the advice simple,practical , and easy to understand.
+
+-Use simple, everyday English that anyone can understand.
+-Keep every sentence short and clear.
+-Avoid complicated financial words and technical language.
+-Explain observations in a friendly, helpful way.
+-Do not make unsupported claims about spending.
+-If the available data is not enough, explain what is missing
+in one simple sentence.
+-Do not write long explanations or lecture the user.
         `;
 
         //console.log("PROMPT:", prompt);
@@ -438,8 +447,8 @@ router.post("/chat", authMiddleware, async (req, res) => {
         });
 
         res.status(200).json({
-            success:true,
-            reply:response.text
+            success: true,
+            reply: response.text
         });
     }
     catch (error) {

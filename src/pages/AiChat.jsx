@@ -1,8 +1,18 @@
 import React from 'react'
 import DashboardLayout from '../components/Layout/DashboardLayout'
 import { FaPaperPlane } from "react-icons/fa";
+import { useState, useEffect } from 'react'
+import { sendAIChatMessage } from '../services/aiApi';
+
 
 function AiChat() {
+
+    const [messages, setMessages] = useState([]);
+    const [input, setInput] = useState('');
+    const [loading, setLoading] = useState(false);
+
+
+
     const questions = [
         { text: "How can i save more money" },
         { text: "Where am I overspending" },
@@ -10,6 +20,48 @@ function AiChat() {
         { text: "How can I save for a vacation" },
 
     ]
+
+    const handleSendMessage = async (text = input) => {
+        const message = text.trim();
+
+        if (!message || loading) return;
+
+        setMessages((prev) => [
+            ...prev, { role: 'user', text: message }
+        ]);
+
+        setInput('');
+        setLoading(true);
+
+        try {
+            const data = await sendAIChatMessage(message);
+
+            setMessages((prev) => [
+                ...prev,
+                {
+                    role: 'ai',
+                    text: data.reply
+                }
+            ]);
+        }
+        catch (error) {
+            console.log("Ai chat error:", error);
+
+            setMessages((prev) => [
+                ...prev,
+                {
+                    role: 'ai',
+                    text: 'Sorry, I could not generate a response.Please try again later.'
+                }
+            ]);
+        }
+
+        finally {
+            setLoading(false);
+        }
+    };
+
+
     return (
         <>
             <DashboardLayout title="AI Chat Advisor">
@@ -60,10 +112,10 @@ function AiChat() {
                             <input type="text"
                                 placeholder='Ask your financial question...'
                                 className='flex-1 border border-gray-100 rounded-xl py-3 px-4 outline-none'
-                                 />
-                                 <button className='w-12 h-12 rounded-xl bg-[#a52cf6] text-white flex items-center justify-center shrink-0'>
-                                    <FaPaperPlane />
-                                 </button>
+                            />
+                            <button className='w-12 h-12 rounded-xl bg-[#a52cf6] text-white flex items-center justify-center shrink-0'>
+                                <FaPaperPlane />
+                            </button>
                         </div>
 
 
