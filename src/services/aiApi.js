@@ -13,7 +13,11 @@ export const getAIAdvice = async() =>{
 };
 
 export const sendAIChatMessage = async(message) => {
-    const response = await api.post('/ai/chat',{message:message});
+    const response = await api.post('/ai/chat',
+        {
+            message:message
+
+        });
 
     return response.data;
 };
