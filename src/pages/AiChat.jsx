@@ -11,6 +11,7 @@ function AiChat() {
     const [input, setInput] = useState('');
     const [loading, setLoading] = useState(false);
     const chatEndRef = useRef(null);
+    const user = JSON.parse(sessionStorage.getItem("user"));
 
 
     const questions = [
@@ -99,14 +100,14 @@ function AiChat() {
 
                             <div className={`max-w-[80%]  px-4 py-3 rounded-2xl text-sm leading-7 
                             bg-gray-200 text-gray-700`}>
-                                Hello akshada i am your chat ai financial advisor ask me anything about savigs ,budget , money wise ,
-                                expense planning or financical disipline
+                                Hi {user?.name || "there"}! 👋 I'm your AI Financial Advisor.
+                                Ask me anything about your finances. Let's make your money work better for you! 💜
                             </div>
 
                             {messages.map((message, index) => (
                                 <div
                                     key={index}
-                                    className={`max-w-[80%] px-4 py-3 rounded-2xl text-sm leading-7 ${message.role === 'user'
+                                    className={`w-fit max-w-[80%] px-4 py-3 rounded-2xl text-sm leading-7 ${message.role === 'user'
                                         ? 'ml-auto bg-[#a52cf6] text-white'
                                         : 'bg-gray-200 text-gray-700'
                                         }`}
@@ -123,10 +124,10 @@ function AiChat() {
                                     Thinking...
                                 </div>
                             )}
-<div Ref={chatEndRef} />
+                            <div Ref={chatEndRef} />
 
                         </div>
-                        
+
 
                         <div className='border-t border-gray-100 p-4 flex items-center gap-4 shrink-0' >
                             <input
@@ -144,8 +145,8 @@ function AiChat() {
                             <button
                                 onClick={() => handleSendMessage()}
                                 disabled={loading || !input.trim()}
-                                className='w-12 h-12 rounded-xl bg-[#a52cf6] text-white 
-                            flex items-center justify-center shrink-0'>
+                                className='w-12 h-12 rounded-xl border bg-[#a52cf6] text-white 
+                            flex items-center justify-center shrink-0 hover:bg-white  hover:text-[#a52cf6] transition'>
                                 <FaPaperPlane />
                             </button>
                         </div>
