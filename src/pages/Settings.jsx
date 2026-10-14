@@ -2,7 +2,7 @@ import React from 'react'
 import DashboardLayout from '../components/Layout/DashboardLayout'
 import { MdLightMode, MdDarkMode } from "react-icons/md";
 import { useState } from 'react';
-import {VscEyeClosed,VscEye} from "react-icons/vsc";
+import { VscEyeClosed, VscEye } from "react-icons/vsc";
 import { toast } from 'sonner';
 import { TiTick } from "react-icons/ti";
 
@@ -17,12 +17,11 @@ function Settings() {
     <>
       <DashboardLayout title='Settings'>
 
-        <div 
-        className={`space-y-6 ${
-          theme === "dark"
-          ? "bg-gray-900 text-white"
-          : "bg-white text-gray-900"
-        }`}
+        <div
+          className={`space-y-6 ${theme === "dark"
+              ? "bg-gray-900 text-white"
+              : "bg-white text-gray-900"
+            }`}
         >
 
           <div className='bg-white rounded-2xl border border-gray-100 p-6'>
@@ -109,19 +108,19 @@ function Settings() {
 
               <div className="relative">
                 <label className='text-sm font-medium block mb-2'>Change Password</label>
-                <input  
-                type={showPassword ? "text":"password"}
-                className='w-full border border-gray-100 rounded-2xl px-4 py-3 pr-12 outline-none' />
-                
+                <input
+                  type={showPassword ? "text" : "password"}
+                  className='w-full border border-gray-100 rounded-2xl px-4 py-3 pr-12 outline-none' />
+
 
                 <button
-                type="button"
-                onClick={() => setShowPassword(prev => !prev)}
-                className="absolute right-4 top-[42px] ">
-               
-                {showPassword ? (<VscEye size={20}/>) : (<VscEyeClosed size={20} /> )}
-                 </button>
-</div>
+                  type="button"
+                  onClick={() => setShowPassword(prev => !prev)}
+                  className="absolute right-4 top-[42px] ">
+
+                  {showPassword ? (<VscEye size={20} />) : (<VscEyeClosed size={20} />)}
+                </button>
+              </div>
               <div>
                 <label className='text-sm font-medium block mb-2'>Confirm Password</label>
                 <input value="5000" readOnly type="password" className='w-full border border-gray-100 rounded-2xl px-4 py-3 outline-none' />
@@ -130,19 +129,19 @@ function Settings() {
           </div>
 
           <div className='flex  justify-center'>
-            <button 
-            onClick={() => toast.success("Settings saved successfully!", {
-              style :{
-                background : "white",
-                color:"green",
-                border:"none",
-              },
-              icon: <span style ={{ color:"green"}}>✓</span>,
-            })
-          } 
-          
+            <button
+              onClick={() => toast.success("Settings saved successfully!", {
+                style: {
+                  background: "white",
+                  color: "green",
+                  border: "none",
+                },
+                icon: <span style={{ color: "green" }}>✓</span>,
+              })
+              }
 
-            className='px-6 py-2.5  bg-[#a52cf6] rounded-lg text-white text-sm 
+
+              className='px-6 py-2.5  bg-[#a52cf6] rounded-lg text-white text-sm 
                         font-medium hover:text-[#a52cf6] hover:border-[#a52cf6] hover:bg-[#f1e6f8]
                          transition cursor-pointer '>
               Save Settings

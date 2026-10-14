@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
-import { Link , useNavigate} from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import { loginUser } from '../services/authApi'
 import { saveToken } from "../utils/auth";
+import { VscEyeClosed, VscEye } from "react-icons/vsc";
+
 
 function Login() {
 
- const navigate = useNavigate();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -15,11 +18,11 @@ function Login() {
     try {
       const data = await loginUser(email, password);
       console.log("Login response-->", data)
-      
+
       saveToken(data.token);
       sessionStorage.setItem("user", JSON.stringify(data.user));
       navigate('/dashboard');
-      
+
     } catch (error) {
       console.log("Login error:", error);
     }
@@ -48,11 +51,23 @@ function Login() {
                   onChange={(e) => setEmail(e.target.value)}
                   className='w-full border border-gray-300 rounded-xl px-3 py-3 outline-none' />
                 <label htmlFor="">Password</label>
-                <input type="password"
-                  placeholder="Enter your password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className='w-full border border-gray-300 rounded-xl px-3 py-3 outline-none' />
+
+                <div className='relative'>
+                  <input type={showPassword ? "text" : "password"}
+                    placeholder="Enter your password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className='w-full border border-gray-300 rounded-xl px-3 py-3 outline-none' />
+
+                  <button type='button'
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-800 transition"
+                    arail-label={showPassword ? "Hide password" : "Show password"}
+                    >
+                    {showPassword ? (<VscEye size={20} />) : (<VscEyeClosed size={20} />)}
+                  </button>
+                </div>
+
                 <button className='w-full h-11 justify-center px-7 py-4  bg-[#a52cf6] rounded-lg text-white text-sm font-medium hover:text-[#a52cf6] 
                                         hover:border-[#a52cf6] hover:bg-[#f1e6f8] transition cursor-pointer flex items-center gap-4'>
                   Login Account</button>
