@@ -1,3 +1,4 @@
+//settings page
 import React from 'react'
 import DashboardLayout from '../components/Layout/DashboardLayout'
 import { MdLightMode, MdDarkMode } from "react-icons/md";
