@@ -123,7 +123,7 @@ function Settings() {
                 </button>
               </div>
               <div>
-                <label className='text-sm font-medium block mb-2'>Confirm Password</label>
+                <label className='text-sm font-medium block mb-2'>Confirm Password kahi pn kara</label>
                 <input value="5000" readOnly type="password" className='w-full border border-gray-100 rounded-2xl px-4 py-3 outline-none' />
               </div>
             </div>
@@ -153,5 +153,7 @@ function Settings() {
     </>
   )
 }
+
+
 
 export default Settings
